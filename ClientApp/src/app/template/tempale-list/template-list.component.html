@@ -1,0 +1,30 @@
+<div class="main-left-list-sec patient-list-sec">
+    <div class="list-sec-top-bar d-flex justify-content-between">
+        <h1 class="font-section-title-medium">{{toSentenceCase(entityName)}}</h1>
+        <button mat-button class="ec-primary-btn add-invoice-btn" (click)='openDialog()'>
+            <span class="material-icons icon-btn">add</span>Add {{entityName}}
+        </button>
+    </div>
+    <div class="list-sec-scroll-wrapper">
+        <div class="patient-list-box">
+            <div class="list-card-item patient-list-item" *ngFor="let record of mappedData; let i=index;"
+                (click)="previewSpecificRecord(i)" [ngClass]="{'card-active': i===selectedIndex}">
+                <div class="list-card-item-content flex-nowrap">
+                    <div *ngFor="let title of record.cardTitle?.fields"
+                        class="d-flex justify-content-between align-items-start w-100">
+                        <h4 class="title">{{ title.value }}</h4>
+                    </div>
+                    <div *ngFor="let detail of record.cardDetail?.fields" class="details-area">
+                        {{ detail.label }}: <span>{{ detail.value}}</span>
+                    </div>
+                    <div class="row status-area">
+                        <div class="col-md-6" *ngFor="let status of record.cardStatus?.fields">
+                            <div>{{ status.label }}</div>
+                            <span>{{ status.value }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
