@@ -12,7 +12,7 @@ on:
 
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.' 
-  
+
 jobs:
   build-and-deploy-api:
     runs-on: ubuntu-latest
@@ -40,9 +40,6 @@ jobs:
 
       - name: Pack nuget package
         run: dotnet pack BookManagement.csproj --configuration Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'  -p:NuspecFile=BookManagement.nuspec
-
-      - name: List artifacts
-        run: ls -R ./publish/
 
       # Login to Azure
       - name: Login to Azure
