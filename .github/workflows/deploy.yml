@@ -41,7 +41,7 @@ jobs:
       - name: Extract NuGet package
         run: |
           mkdir -p extracted
-          nuget install Novel.IO.CodeGen.Api.1.0.0 -Source %cd% -OutputDirectory ./extracted
+          nuget install -OutputDirectory ./extracted ./publish/Novel.IO.CodeGen.Api.1.0.0.nupkg
 
       - name: List artifacts
         run: ls -R ./extracted/
