@@ -41,7 +41,7 @@ jobs:
       - name: Extract NuGet package
         run: |
           mkdir -p extracted
-          tar -xvf ./publish/*.nupkg -C ./extracted/
+          nuget install -OutputDirectory ./extracted ./publish/*.nupkg
 
       - name: List artifacts
         run: ls -R ./extracted/
