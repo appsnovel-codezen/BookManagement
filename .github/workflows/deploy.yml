@@ -39,7 +39,7 @@ jobs:
         run: dotnet build --configuration Release 
 
       - name: Pack nuget package
-        run: dotnet publish -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
+        run: dotnet publish -c Release --property:PublishDir='./myapp' 
 
       # Login to Azure
       - name: Login to Azure
@@ -52,7 +52,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ secrets.AZURE_API_APP_NAME }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+          package: './API/myapp'
 
       - name: Logout from Azure
         run: |
