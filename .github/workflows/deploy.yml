@@ -39,7 +39,7 @@ jobs:
         run: dotnet build --configuration Release 
 
       - name: Pack nuget package
-        run: dotnet pack BookManagement.csproj --configuration Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'  -p:NuspecFile=BookManagement.nuspec
+        run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
 
       # Login to Azure
       - name: Login to Azure
