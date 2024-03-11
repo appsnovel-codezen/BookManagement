@@ -41,7 +41,7 @@ jobs:
       - name: Extract NuGet package
         run: |
           mkdir -p extracted
-          dotnet restore ./API/publish/Novel.IO.CodeGen.Api.1.0.0.nupkg --packages ./extracted
+          dotnet restore ./publish/Novel.IO.CodeGen.Api.1.0.0.nupkg --packages ./extracted
 
       - name: List artifacts
         run: ls -R ./extracted/
