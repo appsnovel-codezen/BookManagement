@@ -38,10 +38,15 @@ jobs:
       - name: Pack nuget package
         run: dotnet pack BookManagement.csproj --configuration Release -o ./publish -p:NuspecFile=BookManagement.nuspec
 
-      - name: List artifacts
-        run: ls -R ./publish/
+      - name: Extract NuGet package
+        run: |
+          mkdir -p extracted
+          tar -xvf ./publish/*.nupkg -C ./extracted/
 
-      # Login to Azure
+      - name: List artifacts
+        run: ls -R ./extracted/
+
+          # Login to Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -52,7 +57,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ secrets.AZURE_API_APP_NAME }}
-          package: './API/publish'
+          package: ./extracted
 
       - name: Logout from Azure
         run: |
