@@ -41,7 +41,7 @@ jobs:
       - name: Extract NuGet package
         run: |
           mkdir -p extracted
-          nuget install -OutputDirectory ./API/extracted ./API/publish/*.nupkg
+          nuget install -OutputDirectory ./API/extracted './API/publish/*.nupkg'
 
       - name: List artifacts
         run: ls -R ./extracted/
