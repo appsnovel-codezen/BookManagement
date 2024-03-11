@@ -38,10 +38,15 @@ jobs:
       - name: Pack nuget package
         run: dotnet pack BookManagement.csproj --configuration Release -o ./publish -p:NuspecFile=BookManagement.nuspec
 
+      - name: Install NuGet CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nuget
+
       - name: Extract NuGet package
         run: |
           mkdir -p extracted
-          nuget install -OutputDirectory ./extracted ./publish/Novel.IO.CodeGen.Api.1.0.0.nupkg
+          nuget install -OutputDirectory ./extracted ./API/publish/Novel.IO.CodeGen.Api.1.0.0.nupkg
 
       - name: List artifacts
         run: ls -R ./extracted/
